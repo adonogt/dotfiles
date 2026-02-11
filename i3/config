@@ -1,0 +1,266 @@
+###################
+# General Settings #
+###################
+
+set $mod Mod4
+font pango:JetBrainsMono Nerd Font 13
+
+# Core settings
+floating_modifier $mod
+gaps inner 7
+gaps outer 11
+smart_borders on
+smart_gaps off
+default_border pixel 0
+default_floating_border pixel 0
+
+#############
+# Autostart #
+#############
+
+# sct (night light mode)
+bindsym $mod+x exec --no-startup-id ~/.config/i3/scripts/night.sh
+
+# Input Method (Japanese/Chinese/Korean support)
+exec --no-startup-id fcitx5
+
+# Screenshots
+exec --no-startup-id flameshot
+
+# Notifications
+exec --no-startup-id /usr/bin/dunst
+
+# Compositor
+exec --no-startup-id picom --config ~/.config/picom/picom.conf
+
+# Polybar
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+# Wallpaper
+exec_always --no-startup-id feh --bg-scale $HOME/media/pictures/wallpapers/gruv.png
+
+# Keyboard layout - US with Caps Lock as Ctrl
+exec --no-startup-id /usr/bin/setxkbmap -option "ctrl:nocaps"
+
+# Power saving
+exec --no-startup-id xset s 480 dpms 600 600 600
+
+# Authentication agent
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# Dex autostart
+exec --no-startup-id dex --autostart --environment i3
+
+# Display setup (if you have monitor script)
+# exec --no-startup-id ~/.screenlayout/monitor.sh
+
+##################
+# Key Bindings   #
+##################
+
+# Terminal
+bindsym $mod+Return exec /usr/bin/kitty
+
+# Kill focused window
+bindsym $mod+q kill
+
+# Rofi launchers
+bindsym $mod+d exec rofi -show drun
+bindsym $mod+Shift+n exec rofi -show window
+
+# File manager
+bindsym $mod+n exec /usr/bin/thunar
+
+# Network manager (impala TUI)
+bindsym $mod+w exec kitty -e impala
+
+# Bluetooth manager (bluetui TUI)
+bindsym $mod+b exec kitty -e bluetui
+
+# Screenshots
+bindsym Print exec flameshot gui
+
+# Lock screen
+bindsym $mod+Shift+b exec betterlockscreen -l blur
+
+# Exit menu
+bindsym $mod+Shift+e exec ~/.config/rofi/powermenu/powermenu.sh
+
+# Reload/Restart i3
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+##################
+# Focus Movement #
+##################
+
+# Focus (vim keys)
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Focus (arrows)
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym $mod+a focus parent
+
+# Move focused window (vim keys)
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Move focused window (arrows)
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+##########
+# Layout #
+##########
+
+# Split orientation
+bindsym $mod+z split h
+bindsym $mod+v split v
+
+# Fullscreen
+bindsym $mod+f fullscreen toggle
+
+# Container layouts
+bindsym $mod+s layout stacking
+bindsym $mod+g layout tabbed
+bindsym $mod+e layout toggle split
+
+# Floating
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+# Resize floating windows and center
+bindsym $mod+Shift+t [floating] resize set 1650 960, move position center
+
+##############
+# Workspaces #
+##############
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# Move container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# Workspace navigation
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+########################
+# Multimedia & System  #
+########################
+
+# Volume control
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Media player control
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Brightness
+bindsym XF86MonBrightnessUp exec brightnessctl s +10%
+bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
+
+###############
+# Resize Mode #
+###############
+
+mode "resize" {
+        # Vim-style bindings
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # Arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # Exit resize mode
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+##################
+# Floating Rules #
+##################
+
+# Set floating for specific applications
+for_window [class="Yad" instance="yad"] floating enable
+for_window [class="Galculator" instance="galculator"] floating enable
+for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
+for_window [window_role="About"] floating enable
+
+###############
+# Color Theme #
+###############
+
+# Color variables
+set $darkbluetrans	#08052be6
+set $darkblue		#08052b
+set $lightblue		#5294e2
+set $urgentred		#e53935
+set $white		#ffffff
+set $black		#000000
+set $purple		#e345ff
+set $darkgrey		#383c4a
+set $grey		#b0b5bd
+set $mediumgrey		#8b8b8b
+set $yellowbrown	#e1b700
+
+# Window colors (borders removed)
+#class		        	border		bground		text		indicator	child_border
+client.focused		    	$lightblue	$darkblue	$white		$darkblue	$darkblue
+client.unfocused	    	$darkblue	$darkblue	$grey		$darkblue	$darkblue
+client.focused_inactive		$darkblue	$darkblue	$grey		$darkblue	$darkblue
+client.urgent		    	$urgentred	$urgentred	$white		$urgentred	$urgentred
+

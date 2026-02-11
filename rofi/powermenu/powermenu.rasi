@@ -1,0 +1,114 @@
+/**
+ * ROFI POWER MENU - ZEN MATTE FINAL
+ * No input bar, only message and buttons.
+ **/
+
+/***** GLOBAL CONFIGURATION *****/
+configuration {
+    show-icons:                 false;
+    font:                       "Lilex Medium 12";
+}
+
+/***** MATTE COLORS *****/
+* {
+    background:                 #151515;
+    background-alt:             #1d2021;
+    foreground:                 #867970;
+    
+    selected:                   #a3ae6d; /* Mint Green */
+    selected-fg:                #151515;
+    
+    /* Color for "goodbye." message */
+    goodbye-color:              #cb8e9e; 
+}
+
+/***** MAIN WINDOW *****/
+window {
+    transparency:               "real";
+    location:                   center;
+    anchor:                     center;
+    fullscreen:                 false;
+    width:                      400px;
+    
+    background-color:           @background;
+    border:                     2px;
+    border-color:               @background-alt;
+    border-radius:              12px;
+    cursor:                     "default";
+}
+
+/***** CONTAINER *****/
+mainbox {
+    background-color:           transparent;
+    /* Remove inputbar, keep only message and list */
+    children:                   [ "message", "listview" ];
+    spacing:                    20px;
+    padding:                    30px;
+}
+
+/***** MESSAGE (goodbye + uptime) *****/
+message {
+    enabled:                    true;
+    margin:                     0px;
+    padding:                    0px;
+    background-color:           transparent;
+    text-color:                 @goodbye-color;
+    border:                     0px;
+}
+
+textbox {
+    background-color:           transparent;
+    text-color:                 inherit;
+    vertical-align:             0.5;
+    horizontal-align:           0.5; /* Centered */
+    placeholder-color:          @foreground;
+    blink:                      true;
+    markup:                     true; /* IMPORTANT for HTML */
+    
+    /* Large base font for "goodbye" */
+    font:                       "Lilex Medium Italic 20"; 
+}
+
+/***** BUTTON LIST *****/
+listview {
+    enabled:                    true;
+    columns:                    3;
+    lines:                      1;
+    cycle:                      true;
+    dynamic:                    true;
+    scrollbar:                  false;
+    layout:                     vertical;
+    reverse:                    false;
+    fixed-height:               true;
+    fixed-columns:              true;
+    
+    spacing:                    15px;
+    margin:                     10px 0px 0px 0px;
+    background-color:           transparent;
+    cursor:                     "default";
+}
+
+/***** ELEMENTS (BUTTONS) *****/
+element {
+    background-color:           @background-alt;
+    text-color:                 @foreground;
+    orientation:                vertical;
+    border-radius:              10px;
+    padding:                    25px 0px;
+    cursor:                     pointer;
+}
+
+element-text {
+    background-color:           transparent;
+    text-color:                 inherit;
+    font:                       "JetBrainsMono Nerd Font 32";
+    horizontal-align:           0.5;
+    vertical-align:             0.5;
+}
+
+element selected.normal {
+    background-color:           @selected;
+    text-color:                 @selected-fg;
+    border:                     0px;
+}
+
