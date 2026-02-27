@@ -33,11 +33,8 @@ exec --no-startup-id /usr/bin/dunst
 # Compositor
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
 
-# Polybar
-exec_always --no-startup-id ~/.config/polybar/launch.sh
-
 # Wallpaper
-exec_always --no-startup-id feh --bg-scale $HOME/media/pictures/wallpapers/gruv.png
+exec_always --no-startup-id feh --bg-scale $HOME/media/pictures/wallpapers/wallpaper.jpg
 
 # Keyboard layout - US with Caps Lock as Ctrl
 exec --no-startup-id /usr/bin/setxkbmap -option "ctrl:nocaps"
@@ -45,7 +42,11 @@ exec --no-startup-id /usr/bin/setxkbmap -option "ctrl:nocaps"
 # Power saving
 exec --no-startup-id xset s 480 dpms 600 600 600
 
+# polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
 # Authentication agent
+exec --no-startup-id udiskie -t
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Dex autostart
@@ -65,7 +66,7 @@ bindsym $mod+Return exec /usr/bin/kitty
 bindsym $mod+q kill
 
 # Rofi launchers
-bindsym $mod+d exec rofi -show drun
+bindsym $mod+d exec --no-startup-id rofi -show drun -theme ~/.config/rofi/transparent.rasi
 bindsym $mod+Shift+n exec rofi -show window
 
 # File manager
@@ -146,40 +147,38 @@ bindsym $mod+Shift+t [floating] resize set 1650 960, move position center
 # Workspaces #
 ##############
 
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws1  "1:一"
+set $ws2  "2:二"
+set $ws3  "3:三"
+set $ws4  "4:四"
+set $ws5  "5:五"
+set $ws6  "6:六"
+set $ws7  "7:七"
+set $ws8  "8:八"
+set $ws9  "9:九"
+set $ws10 "10:十"
 
-# Switch to workspace
-bindsym $mod+1 workspace number $ws1
-bindsym $mod+2 workspace number $ws2
-bindsym $mod+3 workspace number $ws3
-bindsym $mod+4 workspace number $ws4
-bindsym $mod+5 workspace number $ws5
-bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8
-bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
 
-# Move container to workspace
-bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8
-bindsym $mod+Shift+9 move container to workspace number $ws9
-bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
 
 # Workspace navigation
 bindsym $mod+Tab workspace next
@@ -227,40 +226,3 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-
-##################
-# Floating Rules #
-##################
-
-# Set floating for specific applications
-for_window [class="Yad" instance="yad"] floating enable
-for_window [class="Galculator" instance="galculator"] floating enable
-for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
-for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
-for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
-for_window [window_role="About"] floating enable
-
-###############
-# Color Theme #
-###############
-
-# Color variables
-set $darkbluetrans	#08052be6
-set $darkblue		#08052b
-set $lightblue		#5294e2
-set $urgentred		#e53935
-set $white		#ffffff
-set $black		#000000
-set $purple		#e345ff
-set $darkgrey		#383c4a
-set $grey		#b0b5bd
-set $mediumgrey		#8b8b8b
-set $yellowbrown	#e1b700
-
-# Window colors (borders removed)
-#class		        	border		bground		text		indicator	child_border
-client.focused		    	$lightblue	$darkblue	$white		$darkblue	$darkblue
-client.unfocused	    	$darkblue	$darkblue	$grey		$darkblue	$darkblue
-client.focused_inactive		$darkblue	$darkblue	$grey		$darkblue	$darkblue
-client.urgent		    	$urgentred	$urgentred	$white		$urgentred	$urgentred
-
