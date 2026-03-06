@@ -37,7 +37,7 @@ exec --no-startup-id picom --config ~/.config/picom/picom.conf
 exec_always --no-startup-id feh --bg-scale $HOME/media/pictures/wallpapers/wallpaper.jpg
 
 # Keyboard layout - US with Caps Lock as Ctrl
-exec --no-startup-id /usr/bin/setxkbmap -option "ctrl:nocaps"
+exec_always  /usr/bin/setxkbmap -option "ctrl:nocaps"
 
 # Power saving
 exec --no-startup-id xset s 480 dpms 600 600 600

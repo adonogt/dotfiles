@@ -1,27 +1,59 @@
-# i3wm Configuration
+# i3wm configuration
 
-A minimal i3 window manager setup focused on productivity and distraction-free workflow.
+a minimal, keyboard-driven i3wm environment designed to support
+sustained focus and efficient daily work.
 
-## Philosophy
+## overview
 
-In an age where our attention is constantly fragmented by screens and notifications, this configuration is built around the principle of intentional computing. Every element is designed to minimize distractions and maximize focus, allowing deep work without the noise of modern desktop environments.
+this configuration was developed to create a predictable,
+low-distraction working environment.\
+modern desktop environments often introduce visual clutter, background
+services, and interaction patterns that interrupt concentration.
 
-Vim-style navigation keeps your hands on the keyboard. TUI tools replace graphical clutter. The Gruvbox color scheme provides warmth and reduces eye strain during extended sessions. This is a workspace that respects your time and attention.
+this setup intentionally removes those layers and prioritizes:
 
-## Disclaimer
+-   fast keyboard interaction\
+-   minimal visual noise\
+-   deterministic window management\
+-   lightweight system tools
 
-This configuration reflects my personal workflow and specific needs. Please review the config file carefully and adapt only what serves your own requirements. What works for one person may not suit another. Use thoughtfully and modify freely.
+the goal is to maintain cognitive flow during development and technical
+work.
 
-## Key Features
+## design goals
 
-- Vim-style navigation (hjkl)
-- TUI-based network and bluetooth management
-- Minimal gaps and clean borders
-- Gruvbox color scheme
-- Keyboard-first workflow
+**1. productivity**
 
-> "強者は優しい" (The strong are always kind.) ― Takehiko Inoue, Vagabond (1998)
+the workspace is structured around tiling window management and keyboard
+navigation, reducing context switching and pointer-driven interaction.
 
-## Screenshots
+**2. reduced distractions**
 
-[Add your screenshots here]
+graphical utilities are replaced with terminal interfaces whenever
+possible, limiting background processes and visual interruptions.
+
+**3. consistency**
+
+vim-style navigation (`hjkl`) is used across the environment to maintain
+muscle memory and reduce interaction friction.
+
+**4. visual clarity**
+
+minimal borders and restrained spacing create a calm interface suitable
+for long sessions of focused work.
+
+## core characteristics
+
+-   i3 tiling window manager\
+-   vim-style navigation (hjkl)\
+-   terminal-first workflow\
+-   tui tools for system management\
+-   minimal borders and gaps
+
+> "強者は優しい" (The strong are always kind.) ― Takehiko Inoue,
+> Vagabond (1998)
+
+## screenshot
+
+![workspace](./desktop.png)
+

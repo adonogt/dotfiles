@@ -1,78 +1,77 @@
+; 侘び寂び — dunst config
+; harmonia com o polybar
+
 [global]
-    # Geometry
     monitor = 0
     follow = none
-    width = (200, 320)
-    height = 300
-    origin = top-center
-    offset = 0x60
-    scale = 0
-    notification_limit = 5
+    width = (160, 280)
+    height = 160
+    origin = top-right
+    offset = 12x28
 
-    # Progress bar
+    notification_limit = 3
+
+    # Progress bar — linha fina, sem frame
     progress_bar = true
-    progress_bar_height = 2
+    progress_bar_height = 1
     progress_bar_frame_width = 0
-    progress_bar_min_width = 150
-    progress_bar_max_width = 300
+    progress_bar_min_width = 140
+    progress_bar_max_width = 260
+    progress_bar_corner_radius = 0
+    progress_bar_color = "#7a6a60"
 
-    # Spacing
-    padding = 16
+    # Espaço — 間
+    padding = 14
     horizontal_padding = 16
-    text_icon_padding = 20
-    gap_size = 10
+    text_icon_padding = 0
+    gap_size = 6
 
-    # Frame
-    frame_width = 2
+    # Frame — apenas sugestão
+    frame_width = 1
     separator_color = frame
-    corner_radius = 12
-    transparency = 0
+    corner_radius = 0
+    transparency = 25
 
-    # Text
-    font = Lilex 10
-    line_height = 6
+    # Tipografia — mesma do polybar
+    font = PlemolJP Console NF Bold 9
+    line_height = 4
     markup = full
     format = "<b>%s</b>\n%b"
     alignment = left
     vertical_alignment = center
-    ellipsize = middle
+    ellipsize = end
     ignore_newline = no
     stack_duplicates = true
+    hide_duplicate_count = true
     show_indicators = no
 
-    # Icons
-    enable_recursive_icon_lookup = no
-    icon_theme = ""
-    icon_position = left
-    min_icon_size = 48
-    max_icon_size = 48
+    # Sem ícones
+    icon_position = off
 
-    # Mouse actions
+    # Mouse
     mouse_left_click = close_current
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
 
 
-# Pastel nature palette
-
 [urgency_low]
-    background = "#151515"
-    foreground = "#867970"
-    frame_color = "#32302f"
+    ; sussurro — quase invisível
+    background = "#cc0d0d0d"
+    foreground = "#7a6a60"
+    frame_color = "#661a1a1a"
     timeout = 3
-    new_icon = ~/.config/dunst/icons/low.png
 
 [urgency_normal]
-    background = "#151515"
-    foreground = "#d4be98"
-    frame_color = "#8daf87"
-    timeout = 3
-    new_icon = ~/.config/dunst/icons/normal.png
+    ; presença serena — bege envelhecido do polybar
+    background = "#cc0d0d0d"
+    foreground = "#d4c4b0"
+    frame_color = "#662a2016"
+    timeout = 4
 
 [urgency_critical]
-    background = "#151515"
-    foreground = "#fbf1c7"
-    frame_color = "#d67b76"
-    timeout = 3
-    new_icon = ~/.config/dunst/icons/critical.png
+    ; alerta contido — terracota do polybar
+    background = "#cc0d0d0d"
+    foreground = "#e8825a"
+    frame_color = "#663a1a0a"
+    timeout = 0
 
