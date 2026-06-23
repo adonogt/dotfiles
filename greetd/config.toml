@@ -1,0 +1,7 @@
+[terminal]
+vt = 1
+
+[default_session]
+# greetd launches a minimal hyprland instance just to run regreet
+command = "dbus-run-session start-hyprland -- --config /etc/greetd/hyprland.lua"
+user = "greeter"

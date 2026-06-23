@@ -1,0 +1,74 @@
+{
+  // global
+  "reload_style_on_change": true,
+  "layer": "top",
+  "position": "top",
+  "height": 34,
+  "spacing": 0,
+
+  // layout — vol · bat · network
+  "modules-left":   ["hyprland/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right":  ["pulseaudio", "custom/sep", "battery", "custom/sep", "network"],
+
+  // workspaces
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "format": "{id}",
+    "all-outputs": false,
+    "sort-by-number": true,
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": []
+    }
+  },
+
+  // clock — time prominent, date always visible and dim via pango
+  "clock": {
+    "format": "{0:%H:%M}  <span alpha='45%'>{0:%a %d}</span>",
+    "escape": false,
+    "tooltip": false
+  },
+
+  // separator between right modules
+  "custom/sep": {
+    "format": "·",
+    "tooltip": false
+  },
+
+  // pulseaudio
+  "pulseaudio": {
+    "format": "vol {volume}%",
+    "format-muted": "vol mute",
+    "scroll-step": 5,
+    "on-click": "pavucontrol",
+    "tooltip-format": "{desc}"
+  },
+
+  // battery
+  "battery": {
+    "format": "bat {capacity}%",
+    "format-charging": "bat {capacity}% ↑",
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "interval": 30,
+    "tooltip-format-discharging": "{capacity}%  ·  {time} remaining",
+    "tooltip-format-charging": "{capacity}%  ·  {time} to full"
+  },
+
+  // network — just the name, no icon, no label
+  "network": {
+    "format-wifi": "{essid}",
+    "format-ethernet": "eth",
+    "format-disconnected": "—",
+    "tooltip-format-wifi": "{signalStrength}%  ·  {ipaddr}",
+    "tooltip-format-ethernet": "{ipaddr}",
+    "interval": 30,
+    "on-click": "kitty -e nmtui"
+  }
+}
