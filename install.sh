@@ -16,17 +16,17 @@ sudo pacman -S --needed --noconfirm \
     brightnessctl playerctl wireplumber pavucontrol \
     ttf-jetbrains-mono-nerd noto-fonts-cjk \
     fcitx5 fcitx5-configtool fcitx5-gtk fcitx5-qt fcitx5-mozc \
-    greetd gstreamer gst-plugins-base gst-plugins-good
+    sddm qt6-svg qt6-virtualkeyboard qt6-multimedia-ffmpeg qt6-imageformats
 
 step "aur packages..."
 
-yay -S --needed --noconfirm greetd-regreet otf-ipafont
+yay -S --needed --noconfirm otf-ipafont
 
 # ── configs ───────────────────────────────────────────────────────────────────
 
 step "configs..."
 
-for app in hypr waybar kitty fuzzel; do
+for app in hypr waybar kitty fuzzel mako; do
     mkdir -p "$HOME/.config/$app"
     cp -r "$DOTFILES/$app/"* "$HOME/.config/$app/"
 done
@@ -34,29 +34,41 @@ done
 chmod +x "$HOME/.config/hypr/scripts/monitor-hotplug.sh"
 fc-cache -fv > /dev/null 2>&1
 
-# ── greetd ────────────────────────────────────────────────────────────────────
+# ── sddm + silentsddm ─────────────────────────────────────────────────────────
 
-step "greetd..."
+step "sddm theme..."
 
-sudo cp "$DOTFILES/greetd/"* /etc/greetd/
-sudo chmod +x /etc/greetd/start-greeter.sh
-sudo mkdir -p /var/lib/regreet /var/log/regreet
-sudo chown greeter:greeter /var/lib/regreet /var/log/regreet
+git clone -b main --depth=1 https://github.com/uiriansan/SilentSDDM /tmp/SilentSDDM
+sudo mkdir -p /usr/share/sddm/themes/silent
+sudo cp -rf /tmp/SilentSDDM/. /usr/share/sddm/themes/silent/
+sudo cp -r /tmp/SilentSDDM/fonts/* /usr/share/fonts/
+rm -rf /tmp/SilentSDDM
 
-# copy wallpaper if it exists
+# copy wallpaper into theme if it exists
 WALLPAPER="$HOME/media/pictures/wallpapers/wallpaper.jpg"
 if [ -f "$WALLPAPER" ]; then
-    sudo cp "$WALLPAPER" /etc/greetd/wallpaper.jpg
+    sudo cp "$WALLPAPER" /usr/share/sddm/themes/silent/backgrounds/wallpaper.jpg
+    sudo sed -i 's|^background = "smoky.jpg"|background = "backgrounds/wallpaper.jpg"|' \
+        /usr/share/sddm/themes/silent/configs/default.conf
     step "wallpaper copied"
 else
-    step "wallpaper not found — add it manually to /etc/greetd/wallpaper.jpg"
+    step "wallpaper not found — copy manually to /usr/share/sddm/themes/silent/backgrounds/"
 fi
+
+sudo tee /etc/sddm.conf > /dev/null << 'SDDM'
+[General]
+InputMethod=qtvirtualkeyboard
+GreeterEnvironment=QML2_IMPORT_PATH=/usr/share/sddm/themes/silent/components/,QT_IM_MODULE=qtvirtualkeyboard
+
+[Theme]
+Current=silent
+SDDM
 
 # ── services ──────────────────────────────────────────────────────────────────
 
 step "services..."
 
-sudo systemctl enable greetd
+sudo systemctl enable sddm
 sudo systemctl set-default graphical.target
 
 # ── done ──────────────────────────────────────────────────────────────────────
