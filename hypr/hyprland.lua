@@ -3,7 +3,7 @@
 
 -- monitors ────────────────────────────────────────────────────────────────────
 
-hl.monitor({ output = "eDP-1",    mode = "1920x1080@60", position = "0x0",    scale = 1.5  })
+hl.monitor({ output = "eDP-1",    mode = "1920x1080@60", position = "0x0",    scale = 1.2 })
 hl.monitor({ output = "HDMI-A-1", mode = "2560x1440@60", position = "1280x0", scale = 1    })
 hl.monitor({ output = "",         mode = "preferred",     position = "auto",   scale = "auto" })
 
@@ -30,7 +30,6 @@ end)
 
 hl.env("XCURSOR_SIZE",    "24")
 hl.env("HYPRCURSOR_SIZE", "24")
-hl.env("GTK_IM_MODULE",   "fcitx")
 hl.env("QT_IM_MODULE",    "fcitx")
 hl.env("XMODIFIERS",      "@im=fcitx")
 
@@ -162,6 +161,10 @@ hl.bind(mod .. " + B",      hl.dsp.exec_cmd("kitty -e bluetui"))
 hl.bind(mod .. " + W",      hl.dsp.exec_cmd("kitty -e impala"))
 hl.bind(mod .. " + Escape", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mod .. " + M",      hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+
+-- screenshots
+hl.bind("Print",         hl.dsp.exec_cmd('grim -g "$(slurp)" - | satty -f - --copy-command wl-copy --output-filename ~/media/pictures/screenshots/$(date +%Y%m%d_%H%M%S).png'))
+hl.bind("SHIFT + Print", hl.dsp.exec_cmd('grim - | satty -f - --copy-command wl-copy --output-filename ~/media/pictures/screenshots/$(date +%Y%m%d_%H%M%S).png'))
 
 -- focus
 hl.bind(mod .. " + left",  hl.dsp.focus({ direction = "left"  }))
