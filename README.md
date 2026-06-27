@@ -9,22 +9,23 @@ just what is needed to work.
 
 ## stack
 
-- **compositor** hyprland
-- **bar** waybar
-- **terminal** kitty
-- **launcher** fuzzel
-- **wallpaper** hyprpaper
-- **lock** hyprlock
-- **notifications** mako
-- **input** fcitx5 + mozc
-- **login** greetd + regreet
+- compositor: hyprland
+- bar: waybar
+- terminal: kitty
+- launcher: fuzzel
+- wallpaper: hyprpaper
+- lock: hyprlock
+- notifications: mako
+- screenshots: grim + satty
+- input: fcitx5 + mozc
+- login: sddm + silentsddm
 
 
 ## requirements
 
 - arch linux with yay installed
 - a wallpaper at `~/media/pictures/wallpapers/wallpaper.jpg`
-- monitors named `eDP-1` and `HDMI-A-1` — edit `hypr/hyprland.lua` if yours differ
+- monitors named `eDP-1` and `HDMI-A-1`, edit `hypr/hyprland.lua` if yours differ
 
 
 ## install
@@ -40,10 +41,12 @@ cd ~/.dotfiles
 
 open `fcitx5-configtool` and add Mozc as an input method.
 
-if another display manager was active before:
+copy your wallpaper into the sddm theme:
 
 ```bash
-sudo systemctl disable sddm
-sudo systemctl enable greetd
-sudo reboot
+sudo cp ~/media/pictures/wallpapers/wallpaper.jpg \
+    /usr/share/sddm/themes/silent/backgrounds/wallpaper.jpg
 ```
+
+for a user avatar on the login screen, place a square image at `~/.face.icon`
+and copy it to `/var/lib/AccountsService/icons/gus`.
