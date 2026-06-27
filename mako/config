@@ -1,32 +1,34 @@
-# font and base colors
-font=JetBrainsMono Nerd Font Mono 13
-background-color=#0f0f0f
-text-color=#c0c0c0
-border-color=#686868
-border-size=1
+font=Inter Light 13
 border-radius=8
-
-# layout
-width=320
-padding=14
+width=480
+padding=8
 margin=12
-max-icon-size=20
+max-icon-size=14
 icons=1
-
-# behavior
 default-timeout=5000
 anchor=top-right
 layer=overlay
 
-# low urgency — dimmer, disappears faster
+# normal — neutral dark
 [urgency=low]
-background-color=#0d0d0d
-text-color=#909090
-border-color=#404040
-default-timeout=3000
+background-color=#111111
+text-color=#c0c0c0
+border-color=#686868
+border-size=2
+default-timeout=4000
 
-# high urgency — amber border, stays until dismissed
+# warning — pastel yellow (default urgency)
+[urgency=normal]
+background-color=#f2c455
+text-color=#3a2808
+border-color=#c49020
+border-size=2
+default-timeout=5000
+
+# error — pastel red
 [urgency=high]
-border-color=#c9925a
-text-color=#e0e0e0
+background-color=#f2d0d0
+text-color=#5a1010
+border-color=#c96060
+border-size=2
 default-timeout=0
