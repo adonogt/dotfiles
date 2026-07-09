@@ -8,13 +8,21 @@
 
   // layout — vol · bat · network
   "modules-left":   ["hyprland/workspaces"],
-  "modules-center": ["clock"],
+  "modules-center": ["custom/clock"],
   "modules-right":  ["pulseaudio", "custom/sep", "battery", "custom/sep", "network"],
 
-  // workspaces
+  // workspaces — kanji numerals with nakaguro (・) separator baked into
+  // each icon string, since GTK CSS has no ::before/::after content support
   "hyprland/workspaces": {
     "on-click": "activate",
-    "format": "{id}",
+    "format": "{icon}",
+    "format-icons": {
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五"
+    },
     "all-outputs": false,
     "sort-by-number": true,
     "persistent-workspaces": {
@@ -27,8 +35,12 @@
   },
 
   // clock — time prominent, date always visible and dim via pango
-  "clock": {
-    "format": "{0:%H:%M}  <span alpha='45%'>{0:%a %d}</span>",
+  // custom module instead of native clock: weekday kanji computed manually
+  // via date +%u (1=mon..7=sun), since locale abday data is often
+  // incomplete/wrong on arch even with ja_JP.utf8 generated
+  "custom/clock": {
+    "exec": "d=$(date +%u); k=(月 火 水 木 金 土 日); echo \"$(date +'%H:%M')  <span alpha='45%'>$(date +'%-m月%-d日')(${k[$((d-1))]})</span>\"",
+    "interval": 30,
     "escape": false,
     "tooltip": false
   },

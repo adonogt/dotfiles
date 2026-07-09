@@ -37,7 +37,6 @@ window#waybar {
 
 #workspaces button.active {
   color: #e4e4e4;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.50);
 }
 
 #workspaces button:hover {
@@ -46,7 +45,7 @@ window#waybar {
 }
 
 /* ── clock ───────────────────────────────────────────────── */
-#clock {
+#custom-clock {
   color: #e2e2e2;
   font-size: 13px;
   letter-spacing: 0.05em;
