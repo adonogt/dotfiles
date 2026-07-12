@@ -18,7 +18,6 @@ just what is needed to work.
 - notifications: mako
 - file manager: thunar (+ thunar-archive-plugin, file-roller for archives)
 - screenshots: grim + slurp + satty
-- networking: NetworkManager + iwd
 - input: fcitx5 + mozc
 - login: sddm + silentsddm
 
@@ -54,16 +53,4 @@ sudo cp ~/media/pictures/wallpapers/wallpaper.jpg \
 for a user avatar on the login screen, place a square image at `~/.face.icon`
 and copy it to `/var/lib/AccountsService/icons/gus`.
 
-if login takes ~1-2 minutes after entering the password, check for a
-lingering `systemd-networkd` conflicting with NetworkManager:
-
-```bash
-systemctl status systemd-networkd.service --no-pager
-```
-
-the install script already disables it, but some arch ISOs re-enable it
-on later updates. if it's active, disable it:
-
-```bash
-sudo systemctl disable --now systemd-networkd.service systemd-networkd-wait-online.service
-```
+少欲知足 — few desires, know contentment (Yuikyōgyō, c. 5th c. CE)
