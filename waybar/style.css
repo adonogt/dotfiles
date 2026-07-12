@@ -23,6 +23,18 @@ window#waybar {
   padding: 0 6px;
 }
 
+/* symmetric min-width on left/right blocks so the center module
+   (clock) is truly centered regardless of content length on either
+   side — waybar centers relative to reserved space per side, not
+   the full bar width */
+box.modules-left {
+  min-width: 260px;
+}
+
+box.modules-right {
+  min-width: 260px;
+}
+
 #workspaces button {
   all: unset;
   padding: 0 9px;
@@ -45,7 +57,7 @@ window#waybar {
 }
 
 /* ── clock ───────────────────────────────────────────────── */
-#custom-clock {
+#clock {
   color: #e2e2e2;
   font-size: 13px;
   letter-spacing: 0.05em;
