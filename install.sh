@@ -17,7 +17,7 @@ sudo pacman -S --needed --noconfirm \
     grim slurp satty \
     thunar thunar-archive-plugin thunar-volman gvfs file-roller \
     unzip zip p7zip unrar \
-    networkmanager iwd \
+    hyprsunset \
     git \
     ttf-jetbrains-mono-nerd noto-fonts-cjk \
     fcitx5 fcitx5-configtool fcitx5-gtk fcitx5-qt fcitx5-mozc \
@@ -72,13 +72,6 @@ SDDM
 # ── services ──────────────────────────────────────────────────────────────────
 
 step "services..."
-
-# avoid the systemd-networkd vs NetworkManager conflict that causes a
-# ~2min boot hang on systemd-networkd-wait-online.service timeout
-sudo systemctl disable --now systemd-networkd.service systemd-networkd-wait-online.service 2>/dev/null || true
-
-sudo systemctl enable --now iwd.service
-sudo systemctl enable --now NetworkManager.service
 
 sudo systemctl enable sddm
 sudo systemctl set-default graphical.target
